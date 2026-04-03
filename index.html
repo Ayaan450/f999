@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F999 – #1 Online Casino Bangladesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD700;
+    --gold-light: #FFE85C;
+    --gold-dark: #B8860B;
+    --red: #E8192C;
+    --red-dark: #A01020;
+    --green: #00C853;
+    --bg-deep: #060810;
+    --bg-card: #0D1020;
+    --bg-panel: #111628;
+    --text: #F0E8D0;
+    --text-muted: #8A8A9A;
+    --border: rgba(255,215,0,0.2);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--bg-deep);
+    color: var(--text);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 50% at 20% 30%, rgba(232,25,44,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 70%, rgba(255,215,0,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 50% 50%, rgba(13,16,32,0.9) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(6,8,16,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #FFD700, #FF6B00, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 12px rgba(255,165,0,0.5));
+  }
+  nav { display: flex; gap: 6px; align-items: center; }
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  nav a:hover { color: var(--gold); background: rgba(255,215,0,0.08); }
+  .header-actions { display: flex; gap: 10px; }
+  .btn-login {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--gold);
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-login:hover { background: rgba(255,215,0,0.1); border-color: var(--gold); }
+  .btn-register {
+    background: linear-gradient(135deg, #E8192C, #A01020);
+    border: none;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(232,25,44,0.4);
+  }
+  .btn-register:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,25,44,0.6); }
+
+  .ticker {
+    background: linear-gradient(90deg, rgba(232,25,44,0.15), rgba(232,25,44,0.05));
+    border-bottom: 1px solid rgba(232,25,44,0.2);
+    overflow: hidden;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .ticker-label {
+    background: var(--red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .ticker-track {
+    display: flex;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+    padding-left: 20px;
+  }
+  .ticker-track span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+    padding: 0 32px;
+    letter-spacing: 0.5px;
+  }
+  .ticker-track span::after { content: '•'; margin-left: 32px; color: var(--red); }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .hero {
+    position: relative;
+    z-index: 1;
+    padding: 60px 24px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(232,25,44,0.12);
+    border: 1px solid rgba(232,25,44,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #FF4D5A;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #FF4D5A; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; transform: scale(1); } 50% { opacity:0.5; transform: scale(1.4); } }
+
+  h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  h1 .line1 { display: block; color: var(--text); }
+  h1 .line2 { display: block; background: linear-gradient(90deg, var(--gold), #FF6B00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(255,165,0,0.4)); }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 460px;
+  }
+  .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn-hero-primary {
+    background: linear-gradient(135deg, #FFD700, #FF8C00);
+    color: #0D0D0D;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 6px 24px rgba(255,165,0,0.4);
+  }
+  .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(255,165,0,0.6); }
+  .btn-hero-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-hero-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats { display: flex; gap: 32px; }
+  .stat-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .casino-ring {
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,215,0,0.1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: ringRotate 20s linear infinite;
+  }
+  @keyframes ringRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .ring-inner {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,215,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: ringRotate 15s linear infinite reverse;
+    position: absolute;
+  }
+  .jackpot-display {
+    text-align: center;
+    animation: none;
+    position: absolute;
+    z-index: 2;
+  }
+  .jackpot-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .jackpot-amount {
+    font-family: 'Orbitron', monospace;
+    font-size: 32px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #FFD700, #FF6B00, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255,165,0,0.5));
+  }
+  .jackpot-currency {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  .ring-dot {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 12px var(--gold);
+  }
+  .ring-dot:nth-child(1) { top: -5px; left: calc(50% - 5px); }
+  .ring-dot:nth-child(2) { bottom: -5px; left: calc(50% - 5px); }
+  .ring-dot:nth-child(3) { left: -5px; top: calc(50% - 5px); }
+  .ring-dot:nth-child(4) { right: -5px; top: calc(50% - 5px); }
+  .orbit-icon {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    animation: counterRotate 20s linear infinite;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  }
+  @keyframes counterRotate { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+  .orbit-icon:nth-child(2) { top: -24px; left: 50%; transform: translateX(-50%); }
+  .orbit-icon:nth-child(3) { right: -24px; top: 50%; transform: translateY(-50%); }
+  .orbit-icon:nth-child(4) { bottom: -24px; left: 50%; transform: translateX(-50%); }
+  .orbit-icon:nth-child(5) { left: -24px; top: 50%; transform: translateY(-50%); }
+
+  .payments-bar {
+    background: var(--bg-panel);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .payments-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .pay-label { font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; flex-shrink: 0; }
+  .pay-methods { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .pay-badge {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+  }
+  .pay-badge:hover { border-color: var(--gold); color: var(--gold); background: rgba(255,215,0,0.05); }
+  .pay-badge.bkash { color: #E2136E; border-color: rgba(226,19,110,0.3); background: rgba(226,19,110,0.05); }
+  .pay-badge.nagad { color: #FF6600; border-color: rgba(255,102,0,0.3); background: rgba(255,102,0,0.05); }
+  .pay-badge.btc { color: #F7931A; border-color: rgba(247,147,26,0.3); background: rgba(247,147,26,0.05); }
+
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 60px 24px;
+  }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: var(--text);
+  }
+  .section-title span { color: var(--gold); }
+  .section-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+  .view-all {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+  .view-all:hover { gap: 10px; }
+
+  .cat-tabs { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+  .cat-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .cat-tab.active {
+    background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,100,0,0.1));
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .cat-tab:hover:not(.active) { border-color: rgba(255,215,0,0.3); color: var(--text); }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 16px;
+  }
+  .game-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .game-card:hover { transform: translateY(-4px); border-color: rgba(255,215,0,0.4); box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,215,0,0.1); }
+  .game-thumb {
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .game-thumb::after {
+    content: 'PLAY';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .game-card:hover .game-thumb::after { opacity: 1; }
+  .game-info { padding: 12px 14px; }
+  .game-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .game-provider { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; }
+  .game-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--red);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .game-badge.hot { background: linear-gradient(90deg, #FF6B00, #FF0000); }
+  .game-badge.new { background: linear-gradient(90deg, #00C853, #00796B); }
+
+  .gc1 { background: linear-gradient(135deg, #1a0a2e, #2d1b4e); }
+  .gc2 { background: linear-gradient(135deg, #0a1a2e, #1a3050); }
+  .gc3 { background: linear-gradient(135deg, #1a1a0a, #3a2a00); }
+  .gc4 { background: linear-gradient(135deg, #1a0a0a, #3a1010); }
+  .gc5 { background: linear-gradient(135deg, #0a1a1a, #0a3030); }
+  .gc6 { background: linear-gradient(135deg, #1a0a1a, #3a1040); }
+
+  .bonus-section { padding: 0 24px 60px; position: relative; z-index: 1; }
+  .bonus-inner { max-width: 1200px; margin: 0 auto; }
+  .bonus-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .bonus-card {
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 1px solid transparent;
+  }
+  .bonus-card:hover { transform: translateY(-3px); }
+  .bonus-card.primary { background: linear-gradient(135deg, #1A0A00, #3A1500); border-color: rgba(255,140,0,0.3); }
+  .bonus-card.secondary { background: linear-gradient(135deg, #0A001A, #1A0040); border-color: rgba(130,80,255,0.3); }
+  .bonus-card.tertiary { background: linear-gradient(135deg, #001A0A, #003520); border-color: rgba(0,200,83,0.3); }
+  .bonus-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+  .bonus-card.primary::before { background: radial-gradient(circle, #FFD700, transparent); }
+  .bonus-card.secondary::before { background: radial-gradient(circle, #8250FF, transparent); }
+  .bonus-card.tertiary::before { background: radial-gradient(circle, #00C853, transparent); }
+
+  .bonus-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+  .bonus-title { font-family: 'Orbitron', monospace; font-size: 14px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+  .bonus-card.primary .bonus-title { color: var(--gold); }
+  .bonus-card.secondary .bonus-title { color: #A87FFF; }
+  .bonus-card.tertiary .bonus-title { color: var(--green); }
+  .bonus-amount { font-family: 'Orbitron', monospace; font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+  .bonus-card.primary .bonus-amount { background: linear-gradient(90deg, #FFD700, #FF8C00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .bonus-card.secondary .bonus-amount { background: linear-gradient(90deg, #A87FFF, #5D3FD3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .bonus-card.tertiary .bonus-amount { background: linear-gradient(90deg, #00E676, #00C853); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .bonus-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .bonus-cta {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    font-family: 'Rajdhani', sans-serif;
+  }
+  .bonus-card.primary .bonus-cta { background: linear-gradient(90deg, #FFD700, #FF8C00); color: #0D0D0D; }
+  .bonus-card.secondary .bonus-cta { background: linear-gradient(90deg, #8250FF, #5D3FD3); color: #fff; }
+  .bonus-card.tertiary .bonus-cta { background: linear-gradient(90deg, #00C853, #00796B); color: #fff; }
+
+  .features-section { padding: 0 24px 60px; position: relative; z-index: 1; }
+  .features-inner { max-width: 1200px; margin: 0 auto; }
+  .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .feature-card:hover { border-color: rgba(255,215,0,0.3); transform: translateY(-2px); }
+  .feature-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+  .feature-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+  .feature-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  footer {
+    background: rgba(6,8,16,0.95);
+    border-top: 1px solid var(--border);
+    padding: 40px 24px 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 22px; font-weight: 900; background: linear-gradient(135deg, #FFD700, #FF6B00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+  .footer-about { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+  .footer-col h4 { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .footer-col a { display: block; font-size: 13px; color: var(--text-muted); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--text); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .footer-legal { font-size: 11px; color: var(--text-muted); line-height: 1.6; max-width: 600px; }
+  .footer-license {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+  }
+  .license-icon { font-size: 24px; }
+  .license-text { font-size: 11px; color: var(--text-muted); }
+  .license-text strong { display: block; color: var(--text); font-size: 12px; }
+  .age-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--text-muted);
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--text-muted);
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeInUp 0.6s ease forwards; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; opacity: 0; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; opacity: 0; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; opacity: 0; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; opacity: 0; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; opacity: 0; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding: 40px 16px 30px; }
+    .hero-visual { display: none; }
+    h1 { font-size: 32px; }
+    nav { display: none; }
+    .bonus-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">F999</div>
+    <nav>
+      <a href="#">🎰 Slots</a>
+      <a href="#">🃏 Live Casino</a>
+      <a href="#">⚽ Sports</a>
+      <a href="#">✈️ Aviator</a>
+      <a href="#">🐟 Fish</a>
+      <a href="#">🎁 Bonuses</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-login">লগইন</button>
+      <button class="btn-register">রেজিস্টার করুন</button>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-label">🔥 LIVE WINS</div>
+  <div class="ticker-track">
+    <span>Rahim won ৳45,000 on Gates of Olympus</span>
+    <span>Karim just hit ৳12,500 on Aviator</span>
+    <span>Hasan won ৳88,000 Jackpot on Sweet Bonanza</span>
+    <span>Raju earned ৳5,000 free spins bonus</span>
+    <span>Moni won ৳32,000 on Live Baccarat</span>
+    <span>Sumon just hit ৳7,500 on Cricket Betting</span>
+    <span>Rahim won ৳45,000 on Gates of Olympus</span>
+    <span>Karim just hit ৳12,500 on Aviator</span>
+    <span>Hasan won ৳88,000 Jackpot on Sweet Bonanza</span>
+    <span>Raju earned ৳5,000 free spins bonus</span>
+    <span>Moni won ৳32,000 on Live Baccarat</span>
+    <span>Sumon just hit ৳7,500 on Cricket Betting</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      বাংলাদেশের #১ অনলাইন ক্যাসিনো
+    </div>
+    <h1>
+      <span class="line1">WIN BIG,</span>
+      <span class="line2">PLAY MORE</span>
+    </h1>
+    <p class="hero-desc">বাংলাদেশের সেরা অনলাইন গেমিং প্ল্যাটফর্মে স্বাগতম। ১,০০০+ গেম, লাইভ ক্যাসিনো, স্পোর্টস বেটিং এবং দ্রুত পেমেন্ট — bKash, Nagad সাপোর্ট সহ।</p>
+    <div class="hero-cta">
+      <button class="btn-hero-primary">🎁 Free ৳25,000 বোনাস পান</button>
+      <button class="btn-hero-secondary">▶ কিভাবে খেলবেন</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">1,000+</span>
+        <span class="stat-label">মোট গেম</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">৳25,000</span>
+        <span class="stat-label">ওয়েলকাম বোনাস</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">24/7</span>
+        <span class="stat-label">সাপোর্ট</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="casino-ring">
+      <div class="ring-dot"></div>
+      <div class="ring-dot"></div>
+      <div class="ring-dot"></div>
+      <div class="ring-dot"></div>
+      <div class="ring-inner">
+        <div class="orbit-icon">🎰</div>
+        <div class="orbit-icon">⚽</div>
+        <div class="orbit-icon">🃏</div>
+        <div class="orbit-icon">✈️</div>
+        <div class="jackpot-display">
+          <div class="jackpot-label">MEGA JACKPOT</div>
+          <div class="jackpot-amount" id="jackpot">৳ 8,47,293</div>
+          <div class="jackpot-currency">BANGLADESHI TAKA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="payments-bar">
+  <div class="payments-inner">
+    <span class="pay-label">💳 পেমেন্ট মেথড</span>
+    <div class="pay-methods">
+      <span class="pay-badge bkash">bKash</span>
+      <span class="pay-badge nagad">Nagad</span>
+      <span class="pay-badge">Rocket</span>
+      <span class="pay-badge">SureCash</span>
+      <span class="pay-badge btc">₿ Bitcoin</span>
+      <span class="pay-badge">Ethereum</span>
+      <span class="pay-badge">Visa / Mastercard</span>
+    </div>
+    <span class="pay-label">⚡ মিনিটে উইথড্র</span>
+  </div>
+</div>
+
+<section>
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-title">জনপ্রিয় <span>গেমস</span></div>
+        <div class="section-sub">১,০০০+ গেম থেকে আপনার পছন্দের গেম বেছে নিন</div>
+      </div>
+      <a href="#" class="view-all">সব দেখুন →</a>
+    </div>
+
+    <div class="cat-tabs">
+      <button class="cat-tab active">🎰 সব গেম</button>
+      <button class="cat-tab">🎲 স্লট</button>
+      <button class="cat-tab">🃏 লাইভ ক্যাসিনো</button>
+      <button class="cat-tab">✈️ Aviator</button>
+      <button class="cat-tab">⚽ স্পোর্টস</button>
+      <button class="cat-tab">🐟 ফিশ গেম</button>
+      <button class="cat-tab">🎡 লটারি</button>
+    </div>
+
+    <div class="games-grid">
+      <div class="game-card">
+        <div class="game-thumb gc1">🔱</div>
+        <div class="game-badge hot">HOT</div>
+        <div class="game-info"><div class="game-name">Gates of Olympus</div><div class="game-provider">Pragmatic Play</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc2">🍭</div>
+        <div class="game-badge hot">HOT</div>
+        <div class="game-info"><div class="game-name">Sweet Bonanza</div><div class="game-provider">Pragmatic Play</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc3" style="background:linear-gradient(135deg,#0a1520,#1a3040)">✈️</div>
+        <div class="game-badge new">NEW</div>
+        <div class="game-info"><div class="game-name">Aviator</div><div class="game-provider">Spribe</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc4">📚</div>
+        <div class="game-info"><div class="game-name">Book of Dead</div><div class="game-provider">Play'n GO</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc5">🎡</div>
+        <div class="game-badge hot">HOT</div>
+        <div class="game-info"><div class="game-name">Crazy Time</div><div class="game-provider">Evolution</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc6">🐺</div>
+        <div class="game-info"><div class="game-name">Wolf Gold</div><div class="game-provider">Pragmatic Play</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc1" style="background:linear-gradient(135deg,#001a0a,#003520)">🎰</div>
+        <div class="game-badge new">NEW</div>
+        <div class="game-info"><div class="game-name">Starburst XXX</div><div class="game-provider">NetEnt</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc2" style="background:linear-gradient(135deg,#100a1a,#201040)">🎲</div>
+        <div class="game-info"><div class="game-name">Lightning Roulette</div><div class="game-provider">Evolution</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc3">🃏</div>
+        <div class="game-info"><div class="game-name">Live Baccarat</div><div class="game-provider">Evolution</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc4" style="background:linear-gradient(135deg,#0a1a00,#1a3200)">🐟</div>
+        <div class="game-badge hot">HOT</div>
+        <div class="game-info"><div class="game-name">Ocean King 3</div><div class="game-provider">IGS</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc5" style="background:linear-gradient(135deg,#1a0a00,#401500)">🏏</div>
+        <div class="game-badge new">NEW</div>
+        <div class="game-info"><div class="game-name">Cricket Betting</div><div class="game-provider">F999 Sports</div></div>
+      </div>
+      <div class="game-card">
+        <div class="game-thumb gc6" style="background:linear-gradient(135deg,#001020,#002040)">💎</div>
+        <div class="game-info"><div class="game-name">Diamond Plinko</div><div class="game-provider">Spribe</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bonus-section">
+  <div class="bonus-inner">
+    <div class="section-header" style="margin-bottom:24px;">
+      <div>
+        <div class="section-title">এক্সক্লুসিভ <span>বোনাস</span></div>
+        <div class="section-sub">নতুন ও পুরাতন সদস্যদের জন্য বিশেষ অফার</div>
+      </div>
+    </div>
+    <div class="bonus-grid">
+      <div class="bonus-card primary">
+        <span class="bonus-icon">🎁</span>
+        <div class="bonus-title">WELCOME BONUS</div>
+        <div class="bonus-amount">100%</div>
+        <div class="bonus-desc">প্রথম ডিপোজিটে ১০০% বোনাস পান। সর্বোচ্চ ৳২৫,০০০ পর্যন্ত।</div>
+        <button class="bonus-cta">এখনই দাবি করুন</button>
+      </div>
+      <div class="bonus-card secondary">
+        <span class="bonus-icon">🔄</span>
+        <div class="bonus-title">CASHBACK BONUS</div>
+        <div class="bonus-amount">10%</div>
+        <div class="bonus-desc">প্রতি সপ্তাহে ১০% ক্যাশব্যাক পান। কোনো শর্ত নেই।</div>
+        <button class="bonus-cta">আরও জানুন</button>
+      </div>
+      <div class="bonus-card tertiary">
+        <span class="bonus-icon">👑</span>
+        <div class="bonus-title">VIP REWARDS</div>
+        <div class="bonus-amount">৳5L+</div>
+        <div class="bonus-desc">VIP সদস্যদের জন্য বিশেষ পুরস্কার ও ব্যক্তিগত ম্যানেজার।</div>
+        <button class="bonus-cta">VIP হোন</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="features-section">
+  <div class="features-inner">
+    <div class="section-header" style="margin-bottom:24px;">
+      <div>
+        <div class="section-title">কেন <span>F999?</span></div>
+        <div class="section-sub">বাংলাদেশের সবচেয়ে বিশ্বস্ত গেমিং প্ল্যাটফর্ম</div>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <div class="feature-title">১০০% নিরাপদ</div>
+        <div class="feature-desc">SSL এনক্রিপশন ও আন্তর্জাতিক লাইসেন্স দ্বারা সুরক্ষিত।</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <div class="feature-title">দ্রুত উইথড্র</div>
+        <div class="feature-desc">মাত্র কয়েক মিনিটে আপনার টাকা পান bKash বা Nagad-এ।</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📱</span>
+        <div class="feature-title">মোবাইল অ্যাপ</div>
+        <div class="feature-desc">Android ও iOS এর জন্য ফ্রি অ্যাপ ডাউনলোড করুন।</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎧</span>
+        <div class="feature-title">২৪/৭ সাপোর্ট</div>
+        <div class="feature-desc">লাইভ চ্যাট, ইমেইল ও হটলাইনে সার্বক্ষণিক সহায়তা।</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">F999</div>
+        <p class="footer-about">F999 বাংলাদেশের প্রিমিয়াম অনলাইন গেমিং প্ল্যাটফর্ম। স্লট, লাইভ ক্যাসিনো, স্পোর্টস বেটিং এবং আরও অনেক কিছু উপভোগ করুন। Curaçao লাইসেন্সপ্রাপ্ত ও সম্পূর্ণ নিরাপদ।</p>
+      </div>
+      <div class="footer-col">
+        <h4>গেমস</h4>
+        <a href="#">স্লট গেম</a>
+        <a href="#">লাইভ ক্যাসিনো</a>
+        <a href="#">স্পোর্টস বেটিং</a>
+        <a href="#">ফিশ গেম</a>
+        <a href="#">লটারি</a>
+      </div>
+      <div class="footer-col">
+        <h4>তথ্য</h4>
+        <a href="#">আমাদের সম্পর্কে</a>
+        <a href="#">প্রমোশন</a>
+        <a href="#">VIP প্রোগ্রাম</a>
+        <a href="#">অ্যাফিলিয়েট</a>
+        <a href="#">যোগাযোগ</a>
+      </div>
+      <div class="footer-col">
+        <h4>সহায়তা</h4>
+        <a href="#">FAQ</a>
+        <a href="#">ডিপোজিট গাইড</a>
+        <a href="#">উইথড্র গাইড</a>
+        <a href="#">দায়িত্বশীল গেমিং</a>
+        <a href="#">গোপনীয়তা নীতি</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <p class="footer-legal">© 2025 F999. সর্বস্বত্ব সংরক্ষিত। F999 শুধুমাত্র ১৮+ বয়সের ব্যক্তিদের জন্য। দায়িত্বের সাথে গেম খেলুন।</p>
+        <div style="display:flex;gap:12px;margin-top:12px;align-items:center;">
+          <span class="age-badge">18+</span>
+          <span style="font-size:11px;color:var(--text-muted);">Antillephone License No. 8048/JAZ</span>
+        </div>
+      </div>
+      <div class="footer-license">
+        <span class="license-icon">🛡️</span>
+        <div class="license-text">
+          <strong>Curaçao Licensed</strong>
+          Secure & Fair Gaming
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let amount = 847293;
+  setInterval(() => {
+    amount += Math.floor(Math.random() * 150) + 50;
+    const el = document.getElementById('jackpot');
+    if (el) el.textContent = '৳ ' + amount.toLocaleString('en-IN');
+  }, 2000);
+
+  document.querySelectorAll('.cat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
